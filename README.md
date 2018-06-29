@@ -6,7 +6,7 @@ Typeorm Paginate
 yarn add @bashleigh/typeormpaginate
 ```
 
-## Formatinng
+## Formatting
 ```bash
 yarn format
 ```
