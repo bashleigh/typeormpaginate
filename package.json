@@ -16,6 +16,7 @@
     "@types/node": "^10.5.1",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
+    "mysql": "^2.15.0",
     "prettier": "^1.13.7",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
@@ -24,6 +25,7 @@
     "typeorm": "^0.2.7"
   },
   "scripts": {
+    "setup": "test -e ormconfig.json || cp ormconfig.json.dist ormconfig.json",
     "prepublish": "rm -rf dist && tsc -p .",
     "test": "mocha -r ts-node/register tests/**/*.spec.ts",
     "format": "prettier --write \"**/*.ts\""

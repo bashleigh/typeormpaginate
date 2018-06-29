@@ -1,34 +1,43 @@
 import {createConnection, Connection} from "typeorm";
 import { expect } from 'chai';
 import 'mocha';
+import {
+  Test,
+} from './entities';
 import Paginate, {
   PaginationOptions, 
   PaginationInterface,
-};
+} from './../src';
 
 const testingConnections = async (): Promise<Connection> => {
   return await createConnection("mysql");
 }
 
-let connection;
+//TODO do schema
 
-async () => {
-  connection = await testingConnections();
-};
+//TODO create entities 
 
 describe('Should return a pagination object', async () => {
   
+  const connection = await testingConnections();
+
   //TODO create repository
 
+  const repository = connection.getRepository(Test);
+
   //TODO create entities
+
+  for (let i = 25; i >= 0; i--) {
+    await repository.save(repository.create({
+      test: `test_${i}`,
+    }));
+  }
   
   //TODO results 
   const results = await Paginate(repository, {
     page: 1,
     limit: 10,
   });
-
-  expect(results).to.instanceof(PaginationInterface);
 
 });
 
