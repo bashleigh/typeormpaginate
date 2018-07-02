@@ -15,11 +15,16 @@ const testingConnections = async (): Promise<Connection> => {
 
 //TODO do schema
 
+const setupSchema = async (connection: Connection) => {
+  await connection.createQueryRunner().createSchema('./entities');
+}
+
 //TODO create entities 
 
 describe('Should return a pagination object', async () => {
   
   const connection = await testingConnections();
+  await setupSchema(connection);
 
   //TODO create repository
 
